@@ -29,6 +29,8 @@ public class ExpandableFieldDeserializer implements JsonDeserializer<ExpandableF
 		else if (json.isJsonObject()) {
 			// Get the `id` out of the response
 			JsonObject fieldAsJsonObject = json.getAsJsonObject();
+			if (!fieldAsJsonObject.has("id"))
+				return null;
 			String id = fieldAsJsonObject.getAsJsonPrimitive("id").getAsString();
 			// We need to get the type inside the generic ExpandableField to make sure fromJson correctly serializes
 			// the JsonObject:
